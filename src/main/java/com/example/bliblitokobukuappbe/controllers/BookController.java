@@ -17,8 +17,17 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping
-    public List<Book> findAllBooks(){
-        return bookService.findAllBooks();
+    public List<Book> getAllBooks(){
+        return bookService.getAllBooks();
+    }
+
+    @PostMapping(
+            path = "/insert",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public void insertBook(@RequestBody Book book){
+        bookService.insertBook(book);
     }
 
     @PutMapping(

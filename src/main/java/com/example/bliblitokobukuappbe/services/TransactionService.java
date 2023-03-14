@@ -1,6 +1,6 @@
 package com.example.bliblitokobukuappbe.services;
 
-import com.example.bliblitokobukuappbe.repository.TransactionRepository;
+import com.example.bliblitokobukuappbe.repositories.TransactionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

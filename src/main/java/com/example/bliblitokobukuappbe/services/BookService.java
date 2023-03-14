@@ -2,22 +2,25 @@ package com.example.bliblitokobukuappbe.services;
 
 
 import com.example.bliblitokobukuappbe.pojos.Book;
-import com.example.bliblitokobukuappbe.repository.BookRepository;
+import com.example.bliblitokobukuappbe.repositories.BookRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@AllArgsConstructor
+@AllArgsConstructor
 @Service
 public class BookService {
 
-    @Autowired
     private BookRepository bookRepository;
 
-    public List<Book> findAllBooks(){
+    public List<Book> getAllBooks(){
         return bookRepository.findAll();
+    }
+
+    public void insertBook(Book book){
+        bookRepository.save(book);
     }
 
     public void updateBook(Book book){
