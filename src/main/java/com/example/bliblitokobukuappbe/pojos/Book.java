@@ -1,10 +1,15 @@
 package com.example.bliblitokobukuappbe.pojos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "books")
 public class Book {
 
@@ -15,10 +20,7 @@ public class Book {
     private int stock;
     private int price;
 
-    public Book(String title, String author, int stock, int price) {
-        this.title = title;
-        this.author = author;
-        this.stock = stock;
-        this.price = price;
-    }
+    @Version
+    private int version;
+
 }
