@@ -4,13 +4,9 @@ package com.example.bliblitokobukuappbe.services;
 import com.example.bliblitokobukuappbe.pojos.Book;
 import com.example.bliblitokobukuappbe.repositories.BookRepository;
 import lombok.AllArgsConstructor;
-import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.FindAndReplaceOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +16,24 @@ import java.util.List;
 public class BookService {
 
     private MongoTemplate mongoTemplate;
+
     private BookRepository bookRepository;
 
-    public List<Book> getAllBooks(){
+    public List<Book> getBooks(String title){
+
+        if(title != null){
+            Query query = new Query();
+            query.addCriteria(Criteria.where("title").regex("^" + title, "i"));
+
+            List<Book> bookList = mongoTemplate.find(query, Book.class);
+
+//            if(bookList.isEmpty()){
+//                bookList =
+//            }
+
+            return bookList;
+        }
+
         return bookRepository.findAll();
     }
 
@@ -34,7 +45,6 @@ public class BookService {
 
         Book oldBook = bookRepository.findById(id).orElse(null);
         if(oldBook != null){
-            System.out.println("gak kosong");
             setUpdate(oldBook, newBook);
             bookRepository.save(oldBook);
             return;

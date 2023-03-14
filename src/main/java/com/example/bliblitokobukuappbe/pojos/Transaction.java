@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 @Document(collection = "transactions")
 public class Transaction {
 
+    public static final String COLLECTION_NAME = "transactions";
+
     @Id
     private String id;
     private String bookId;

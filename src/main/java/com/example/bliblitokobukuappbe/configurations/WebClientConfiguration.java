@@ -1,15 +1,13 @@
 package com.example.bliblitokobukuappbe.configurations;
 
-import com.example.bliblitokobukuappbe.pojos.Book;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class AppConfiguration {
+public class WebClientConfiguration {
     @Bean
-    public Book bookBean(){
-        return new Book();
+    public RestTemplate restTemplate(){
+        return new RestTemplate();
     }
-
-
 }
