@@ -31,12 +31,12 @@ public class BookController {
     }
 
     @PutMapping(
-            path = "/update",
+            path = "/update/{bookId}",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public void updateBook(@RequestBody Book book){
-        bookService.updateBook(book);
+    public void updateBook(@RequestBody Book book, @PathVariable("bookId") String id){
+        bookService.updateBook(id, book);
     }
 
     @DeleteMapping(
