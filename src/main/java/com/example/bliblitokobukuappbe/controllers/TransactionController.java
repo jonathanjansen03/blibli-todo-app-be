@@ -15,6 +15,7 @@ public class TransactionController {
 
     private TransactionService transactionService;
 
+    @GetMapping
     public List<Transaction> getTransactions() {
         return transactionService.getTransactions();
     }
