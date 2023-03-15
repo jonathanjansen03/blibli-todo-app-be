@@ -46,5 +46,8 @@ public class TransactionController {
         transactionService.deleteTransaction(transactionId);
     }
 
-
+    @GetMapping
+    public Transaction findByIdTransaction(String id) {
+        return transactionService.findByIdTransaction(id);
+    }
 }

@@ -23,11 +23,13 @@ public class TransactionService {
 
     public void updateTransaction(Transaction newTransaction, String id) {
         transactionRepository.findById(id).ifPresent(oldTransaction -> transactionRepository.save(newTransaction));
-
     }
 
     public void deleteTransaction(String id) {
         transactionRepository.deleteById(id);
     }
 
+    public Transaction findByIdTransaction(String id) {
+        return transactionRepository.findById(id).orElse(null);
+    }
 }
