@@ -29,7 +29,7 @@ public class TransactionService {
         transactionRepository.deleteById(id);
     }
 
-    public Transaction findByIdTransaction(String id) {
+    public Transaction findTransactionById(String id) {
         return transactionRepository.findById(id).orElse(null);
     }
 }

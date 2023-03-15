@@ -44,7 +44,7 @@ public class TransactionCRUDTest {
 
         transactionService.insertTransaction(transaction);
 
-        Transaction findTransaction = transactionService.findByIdTransaction(transaction.getId());
+        Transaction findTransaction = transactionService.findTransactionById(transaction.getId());
 
         Assertions.assertEquals(transaction.getId(), findTransaction.getId());
     }
@@ -53,7 +53,7 @@ public class TransactionCRUDTest {
     void deleteTransactionTest() {
         List<Transaction> transactionList = transactionService.getTransactions();
         Transaction transaction = transactionList.get(0);
-        Transaction findTransaction = transactionService.findByIdTransaction(transaction.getId());
+        Transaction findTransaction = transactionService.findTransactionById(transaction.getId());
 
         transactionService.deleteTransaction(findTransaction.getId());
 
@@ -64,7 +64,7 @@ public class TransactionCRUDTest {
     void updateTransactionTest() {
         List<Transaction> transactionList = transactionService.getTransactions();
         Transaction transaction = transactionList.get(0);
-        Transaction findTransaction = transactionService.findByIdTransaction(transaction.getId());
+        Transaction findTransaction = transactionService.findTransactionById(transaction.getId());
 
         findTransaction.setQty(20);
         transactionService.updateTransaction(findTransaction, findTransaction.getId());
