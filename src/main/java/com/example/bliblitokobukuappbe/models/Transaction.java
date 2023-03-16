@@ -1,4 +1,4 @@
-package com.example.bliblitokobukuappbe.pojos;
+package com.example.bliblitokobukuappbe.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

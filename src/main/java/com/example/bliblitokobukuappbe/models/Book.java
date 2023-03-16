@@ -1,4 +1,4 @@
-package com.example.bliblitokobukuappbe.pojos;
+package com.example.bliblitokobukuappbe.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,4 +25,10 @@ public class Book {
     @Version
     private int version;
 
+    public Book(String title, String author, int stock, int price) {
+        this.title = title;
+        this.author = author;
+        this.stock = stock;
+        this.price = price;
+    }
 }

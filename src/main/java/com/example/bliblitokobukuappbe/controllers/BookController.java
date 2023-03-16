@@ -1,12 +1,13 @@
 package com.example.bliblitokobukuappbe.controllers;
 
 
-import com.example.bliblitokobukuappbe.pojos.Book;
+import com.example.bliblitokobukuappbe.models.Book;
 import com.example.bliblitokobukuappbe.services.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -18,7 +19,15 @@ public class BookController {
 
     @GetMapping
     public List<Book> getBooks(@RequestParam(required = false) String title){
-        return bookService.getBooks(title);
+        List<Book> bookList = new ArrayList<>();
+
+        try {
+            bookList = bookService.getBooks(title);
+        }
+        catch (Exception e){
+
+        }
+        return bookList;
     }
 
     @PostMapping(
