@@ -1,6 +1,6 @@
 package com.example.bliblitokobukuappbe;
 
-import com.example.bliblitokobukuappbe.pojos.Transaction;
+import com.example.bliblitokobukuappbe.models.Transaction;
 import com.example.bliblitokobukuappbe.repositories.TransactionRepository;
 import com.example.bliblitokobukuappbe.services.TransactionService;
 import org.junit.jupiter.api.Assertions;

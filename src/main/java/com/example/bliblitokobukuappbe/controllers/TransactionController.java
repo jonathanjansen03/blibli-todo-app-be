@@ -1,6 +1,6 @@
 package com.example.bliblitokobukuappbe.controllers;
 
-import com.example.bliblitokobukuappbe.pojos.Transaction;
+import com.example.bliblitokobukuappbe.models.Transaction;
 import com.example.bliblitokobukuappbe.services.TransactionService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
