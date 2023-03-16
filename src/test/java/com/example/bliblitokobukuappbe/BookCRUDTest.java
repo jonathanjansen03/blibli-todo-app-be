@@ -56,6 +56,6 @@ public class BookCRUDTest {
 
         bookService.updateBook(updatedBook.getId(), updatedBook);
 
-        Assertions.assertNotEquals(updatedBook, bookList.get(0));
+        Assertions.assertEquals(updatedBook, bookList.get(0));
     }
 }
