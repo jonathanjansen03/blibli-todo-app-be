@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
@@ -37,7 +38,8 @@ public class BookService {
         List<BookDTO> docsList = response.getDocs();
 
         List<Book> bookList = new ArrayList<>();
-        for(BookDTO doc : docsList){
+
+        bookList = docsList.stream().map(doc -> {
 
             String newBookTitle = doc.getTitle();
             String newBookAuthor = "Unknown";
@@ -49,11 +51,12 @@ public class BookService {
             int newBookStock = new Random().ints(1, 100).findFirst().getAsInt();
             int newBookPrice = new Random().ints(1, 200).findFirst().getAsInt() * 1000;
 
-            Book newBook = new Book(newBookTitle, newBookAuthor, newBookStock, newBookPrice);
-            bookList.add(newBook);
-        }
+            return new Book(newBookTitle, newBookAuthor, newBookStock, newBookPrice);
+
+        }).collect(Collectors.toList());
 
         return bookRepository.saveAll(bookList);
+
     }
 
     public List<Book> getBooks(String title) {
@@ -88,6 +91,7 @@ public class BookService {
         }
 
         bookRepository.save(newBook);
+
     }
 
     public void setUpdate(Book oldBook, Book newBook){

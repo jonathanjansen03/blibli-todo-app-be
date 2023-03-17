@@ -19,15 +19,18 @@ public class BookController {
 
     @GetMapping
     public List<Book> getBooks(@RequestParam(required = false) String title){
+
         List<Book> bookList = new ArrayList<>();
 
         try {
             bookList = bookService.getBooks(title);
         }
         catch (Exception e){
-
+            System.out.println("Oops, something went wrong");
         }
+
         return bookList;
+
     }
 
     @PostMapping(
@@ -56,6 +59,5 @@ public class BookController {
     public void deleteBook(@PathVariable("bookId") String id){
         bookService.deleteBook(id);
     }
-
 
 }

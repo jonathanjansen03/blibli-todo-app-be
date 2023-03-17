@@ -17,10 +17,12 @@ public class Transaction {
 
     @Id
     private String id;
+
+    @Version
+    private int version;
+
     private String bookId;
     private int qty;
     private LocalDateTime purchasedAt;
 
-    @Version
-    private int version;
 }

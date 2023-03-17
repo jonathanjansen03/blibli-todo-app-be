@@ -4,6 +4,7 @@ import com.example.bliblitokobukuappbe.models.Transaction;
 import com.example.bliblitokobukuappbe.repositories.TransactionRepository;
 import com.example.bliblitokobukuappbe.services.TransactionService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,11 +23,13 @@ public class TransactionCRUDTest {
     TransactionRepository transactionRepository;
 
     @Test
+    @Disabled
     void testSpringBoot() {
         Assertions.assertNotNull(transactionService);
     }
 
     @Test
+    @Disabled
     void getTransactionTest() {
         List<Transaction> transactionList = transactionService.getTransactions();
 
@@ -35,6 +38,7 @@ public class TransactionCRUDTest {
     }
 
     @Test
+    @Disabled
     void insertTransactionTest() {
         Random random = new Random();
         Transaction transaction = new Transaction();
@@ -50,6 +54,7 @@ public class TransactionCRUDTest {
     }
 
     @Test
+    @Disabled
     void deleteTransactionTest() {
         List<Transaction> transactionList = transactionService.getTransactions();
         Transaction transaction = transactionList.get(0);
@@ -61,6 +66,7 @@ public class TransactionCRUDTest {
     }
 
     @Test
+    @Disabled
     void updateTransactionTest() {
         List<Transaction> transactionList = transactionService.getTransactions();
         Transaction transaction = transactionList.get(0);

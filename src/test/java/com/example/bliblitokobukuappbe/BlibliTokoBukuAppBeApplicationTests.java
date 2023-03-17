@@ -1,6 +1,6 @@
 package com.example.bliblitokobukuappbe;
 
-import com.example.bliblitokobukuappbe.services.BookService;
+import com.example.bliblitokobukuappbe.controllers.BookController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -22,10 +22,9 @@ class BlibliTokoBukuAppBeApplicationTests {
 
 	@Test
 	@Disabled
-	public void test(){
-		BookService bookService = applicationContext.getBean(BookService.class);
-		bookService.getBooks("the lord of the rings");
+	public void testConsumeApi(){
+		BookController bookController = applicationContext.getBean(BookController.class);
+		bookController.getBooks("the lord of the rings");
 	}
-
 
 }

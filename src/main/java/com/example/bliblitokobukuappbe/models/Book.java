@@ -17,13 +17,15 @@ public class Book {
 
     @Id
     private String id;
-    private String title;
-    private String author;
-    private int stock;
-    private int price;
 
     @Version
     private int version;
+
+    private String title;
+    private String author;
+    private int stock;
+    private double price;
+    private double discount;
 
     public Book(String title, String author, int stock, int price) {
         this.title = title;
