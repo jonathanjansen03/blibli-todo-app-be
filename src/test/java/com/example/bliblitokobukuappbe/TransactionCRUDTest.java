@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -40,11 +40,9 @@ public class TransactionCRUDTest {
     @Test
     @Disabled
     void insertTransactionTest() {
+
         Random random = new Random();
-        Transaction transaction = new Transaction();
-        transaction.setQty(random.nextInt(10));
-        transaction.setBookId(UUID.randomUUID().toString());
-        transaction.setPurchasedAt(LocalDateTime.now());
+        Transaction transaction = new Transaction(UUID.randomUUID().toString(), random.nextInt(10));
 
         transactionService.insertTransaction(transaction);
 
@@ -76,5 +74,13 @@ public class TransactionCRUDTest {
         transactionService.updateTransaction(findTransaction, findTransaction.getId());
 
         Assertions.assertEquals(transaction.getId(), transactionList.get(0).getId());
+    }
+
+    @Test
+    void getMonthlyReport(){
+        List<Transaction> report = transactionService.getMonthlyReport(3, 2023);
+        report.stream().forEach(transaction -> {
+            System.out.println(transaction);
+        });
     }
 }

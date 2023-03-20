@@ -61,7 +61,7 @@ public class BookService {
 
     public List<Book> getBooks(String title) {
 
-        if(title != null){
+        if(title != null && title.trim().length() != 0){
             Query query = new Query();
             query.addCriteria(Criteria.where("title").regex("\\s*" + title, "i"));
 

@@ -20,6 +20,11 @@ public class TransactionController {
         return transactionService.getTransactions();
     }
 
+    @GetMapping("/report")
+    public List<Transaction> getMonthlyReport(@RequestParam int month, @RequestParam int year){
+        return  transactionService.getMonthlyReport(month, year);
+    }
+
     @PostMapping(
             path = "/insert",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},

@@ -1,14 +1,15 @@
 package com.example.bliblitokobukuappbe.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
+
+import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "books")
 public class Book {
@@ -24,13 +25,26 @@ public class Book {
     private String title;
     private String author;
     private int stock;
+
+    @Getter(AccessLevel.NONE)
     private double price;
+
+    public double getPrice(){
+        return this.price * this.discount;
+    }
+
     private double discount;
 
-    public Book(String title, String author, int stock, int price) {
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{ 'book': ?#{#self._id} }")
+    List<Transaction> transactionList;
+
+
+    public Book(String title, String author, int stock, double price) {
         this.title = title;
         this.author = author;
         this.stock = stock;
         this.price = price;
+        this.discount = 1;
     }
 }
