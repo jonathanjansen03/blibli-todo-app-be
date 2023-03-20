@@ -1,36 +1,5 @@
 package com.example.bliblitokobukuappbe;
 
-<<<<<<< HEAD
-import com.example.bliblitokobukuappbe.controllers.BookController;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-
-@SpringBootTest
-class BookCRUDTest {
-
-	private ConfigurableApplicationContext applicationContext;
-
-	@Autowired
-	BookController bookController;
-
-	@BeforeEach
-	public void setUp(){
-		this.applicationContext = new AnnotationConfigApplicationContext(BlibliTokoBukuAppBeApplication.class);
-		applicationContext.registerShutdownHook();
-	}
-
-	@Test
-	public void testConsumeApi(){
-		bookController.getBooks("narnia");
-	}
-
-=======
 import com.example.bliblitokobukuappbe.models.Book;
 import com.example.bliblitokobukuappbe.repositories.BookRepository;
 import com.example.bliblitokobukuappbe.services.BookService;
@@ -89,5 +58,4 @@ public class BookCRUDTest {
 
         Assertions.assertEquals(updatedBook, bookList.get(0));
     }
->>>>>>> 7c2fb7b82f3d9d2f9ef06641cb785d01576196f2
 }
