@@ -3,6 +3,7 @@ package com.example.bliblitokobukuappbe;
 import com.example.bliblitokobukuappbe.models.Transaction;
 import com.example.bliblitokobukuappbe.repositories.TransactionRepository;
 import com.example.bliblitokobukuappbe.services.TransactionService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,7 @@ import java.util.Random;
 import java.util.UUID;
 
 @SpringBootTest(classes = BlibliTokoBukuAppBeApplication.class)
+@Slf4j
 public class TransactionCRUDTest {
     @Autowired
     TransactionService transactionService;
@@ -79,8 +81,8 @@ public class TransactionCRUDTest {
     @Test
     void getMonthlyReport(){
         List<Transaction> report = transactionService.getMonthlyReport(3, 2023);
-        report.stream().forEach(transaction -> {
-            System.out.println(transaction);
+        report.forEach(transaction -> {
+            log.info(transaction.getBookId());
         });
     }
 }
