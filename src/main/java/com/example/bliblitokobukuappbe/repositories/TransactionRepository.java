@@ -11,11 +11,19 @@ import java.util.List;
 public interface TransactionRepository extends MongoRepository <Transaction, String> {
 
     @Query(
+//            "{" +
+//                "'$and' : [" +
+//                    "{'$expr': {'$eq': [{'$month': '$purchasedAt'}, ?0]}}," +
+//                    "{'$expr': {'$eq': [{'$year': '$purchasedAt'}, ?1]}}" +
+//                "]" +
+//            "}"
             "{" +
-                "'$and' : [" +
-                    "{'$expr': {'$eq': [{'$month': '$purchasedAt'}, ?0]}}," +
-                    "{'$expr': {'$eq': [{'$year': '$purchasedAt'}, ?1]}}" +
-                "]" +
+                    "'$expr' : {" +
+                        "'$and': [" +
+                            "{'$eq': [{ '$year': '$purchasedAt' }, ?1]}," +
+                            "{'$eq': [{ '$month': '$purchasedAt' }, ?0]}" +
+                        "]" +
+                    "}" +
             "}"
     )
     List<Transaction> getMonthlyReport(int month, int year);
