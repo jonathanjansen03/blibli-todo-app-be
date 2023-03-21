@@ -12,6 +12,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/gdn-bookstore-api/books")
 public class BookController {
 
@@ -51,11 +52,7 @@ public class BookController {
         bookService.updateBook(id, book);
     }
 
-    @DeleteMapping(
-            path = "/delete/{bookId}",
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
-    )
+    @DeleteMapping(path = "/delete/{bookId}")
     public void deleteBook(@PathVariable("bookId") String id){
         bookService.deleteBook(id);
     }

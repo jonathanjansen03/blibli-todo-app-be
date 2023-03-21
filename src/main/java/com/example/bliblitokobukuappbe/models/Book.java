@@ -25,26 +25,13 @@ public class Book {
     private String title;
     private String author;
     private int stock;
-
-    @Getter(AccessLevel.NONE)
     private double price;
-
-    public double getPrice(){
-        return this.price * this.discount;
-    }
-
-    private double discount;
-
-    @ReadOnlyProperty
-    @DocumentReference(lookup = "{ 'book': ?#{#self._id} }")
-    List<Transaction> transactionList;
-
+    private double discount = 1;
 
     public Book(String title, String author, int stock, double price) {
         this.title = title;
         this.author = author;
         this.stock = stock;
         this.price = price;
-        this.discount = 1;
     }
 }

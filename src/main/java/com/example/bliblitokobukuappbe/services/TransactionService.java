@@ -27,7 +27,7 @@ public class TransactionService {
         transactionRepository.save(newTransaction);
     }
 
-    public void updateTransaction(Transaction newTransaction, String id) {
+    public void updateTransaction(String id, Transaction newTransaction) {
         transactionRepository.findById(id).ifPresent(oldTransaction -> transactionRepository.save(newTransaction));
     }
 
