@@ -33,9 +33,7 @@ public class BookCRUDTest {
         System.out.println("\n\n=== Initial State ===");
         System.out.println("Count: " + bookList.size());
 
-        bookList.stream().forEach(book -> {
-            System.out.println(book);
-        });
+        bookList.forEach(book -> System.out.println(book));
     }
 
 
@@ -76,9 +74,7 @@ public class BookCRUDTest {
         System.out.println("\n\n=== Final State ===");
         System.out.println("Count: " + bookList.size());
 
-        bookList.stream().forEach(book -> {
-            System.out.println(book);
-        });
+        bookList.forEach(book -> System.out.println(book));
     }
 
 }

@@ -5,6 +5,9 @@ import com.example.bliblitokobukuappbe.models.Transaction;
 import com.example.bliblitokobukuappbe.services.BookService;
 import com.example.bliblitokobukuappbe.services.TransactionService;
 import org.junit.jupiter.api.*;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,6 +18,8 @@ import java.util.Random;
 
 @SpringBootTest(classes = BlibliTokoBukuAppBeApplication.class)
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
+@Slf4j
+
 public class TransactionCRUDTest {
     @Autowired
     TransactionService transactionService;
@@ -76,8 +81,8 @@ public class TransactionCRUDTest {
     @Order(5)
     public void getMonthlyReport(){
         List<Transaction> report = transactionService.getMonthlyReport(3, 2023);
-        report.stream().forEach(transaction -> {
-            System.out.println(transaction);
-        });
+
+        System.out.println("\n\n=== Monthly Report ===");
+        report.forEach(transaction -> System.out.println(transaction));
     }
 }
