@@ -49,7 +49,7 @@ public class BookService {
             }
 
             int newBookStock = new Random().ints(1, 100).findFirst().getAsInt();
-            int newBookPrice = new Random().ints(1, 200).findFirst().getAsInt() * 1000;
+            int newBookPrice = new Random().ints(40, 200).findFirst().getAsInt() * 1000;
 
             return new Book(newBookTitle, newBookAuthor, newBookStock, newBookPrice);
 
@@ -91,7 +91,6 @@ public class BookService {
         }
 
         bookRepository.save(newBook);
-
     }
 
     public void setUpdate(Book oldBook, Book newBook){

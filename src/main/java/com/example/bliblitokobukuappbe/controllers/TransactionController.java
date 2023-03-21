@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("gdn-bookstore-api/transactions")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TransactionController {
 
     private TransactionService transactionService;
@@ -40,7 +41,7 @@ public class TransactionController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     public void updateTransaction(@RequestBody Transaction transaction, @PathVariable String transactionId) {
-        transactionService.updateTransaction(transaction, transactionId);
+        transactionService.updateTransaction(transactionId, transaction);
     }
 
     @DeleteMapping(

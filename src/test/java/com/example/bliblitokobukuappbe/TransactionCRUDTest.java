@@ -1,83 +1,80 @@
 package com.example.bliblitokobukuappbe;
 
+import com.example.bliblitokobukuappbe.models.Book;
 import com.example.bliblitokobukuappbe.models.Transaction;
-import com.example.bliblitokobukuappbe.repositories.TransactionRepository;
+import com.example.bliblitokobukuappbe.services.BookService;
 import com.example.bliblitokobukuappbe.services.TransactionService;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
+
 
 @SpringBootTest(classes = BlibliTokoBukuAppBeApplication.class)
+@TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
 public class TransactionCRUDTest {
     @Autowired
     TransactionService transactionService;
 
+    private List<Transaction> transactionList;
+
     @Autowired
-    TransactionRepository transactionRepository;
+    BookService bookService;
 
-    @Test
-    @Disabled
-    void testSpringBoot() {
-        Assertions.assertNotNull(transactionService);
+    private List<Book> bookList;
+
+    @BeforeEach
+    public void setUp(){
+        this.transactionList = transactionService.getTransactions();
+        this.bookList = bookService.getBooks(null);
     }
 
     @Test
-    @Disabled
-    void getTransactionTest() {
+    @Order(1)
+    public void getTransactionTest() {
         List<Transaction> transactionList = transactionService.getTransactions();
-
         Assertions.assertNotNull(transactionList);
-        Assertions.assertNotEquals(transactionList.size(), 0);
     }
 
     @Test
-    @Disabled
-    void insertTransactionTest() {
+    @Order(2)
+    public void insertTransactionTest() {
 
+        Book book = bookList.get(0);
         Random random = new Random();
-        Transaction transaction = new Transaction(UUID.randomUUID().toString(), random.nextInt(10));
 
-        transactionService.insertTransaction(transaction);
+        Transaction newTransaction = new Transaction(book, random.nextInt(10));
+        transactionService.insertTransaction(newTransaction);
 
-        Transaction findTransaction = transactionService.findTransactionById(transaction.getId());
+        Transaction recentTransaction = transactionService.findTransactionById(newTransaction.getId());
 
-        Assertions.assertEquals(transaction.getId(), findTransaction.getId());
+        Assertions.assertEquals(newTransaction.getId(), recentTransaction.getId());
+
     }
 
     @Test
-    @Disabled
-    void deleteTransactionTest() {
-        List<Transaction> transactionList = transactionService.getTransactions();
+    @Order(4)
+    public void deleteTransactionTest() {
         Transaction transaction = transactionList.get(0);
-        Transaction findTransaction = transactionService.findTransactionById(transaction.getId());
 
-        transactionService.deleteTransaction(findTransaction.getId());
-
-        Assertions.assertNotEquals(transaction.getId(), transactionList.get(0).getId());
+        transactionService.deleteTransaction(transaction.getId());
     }
 
     @Test
-    @Disabled
-    void updateTransactionTest() {
-        List<Transaction> transactionList = transactionService.getTransactions();
-        Transaction transaction = transactionList.get(0);
-        Transaction findTransaction = transactionService.findTransactionById(transaction.getId());
+    @Order(3)
+    public void updateTransactionTest() {
+        Transaction updatedTransaction = transactionList.get(0);
+        updatedTransaction.setQty(20);
 
-        findTransaction.setQty(20);
-        transactionService.updateTransaction(findTransaction, findTransaction.getId());
-
-        Assertions.assertEquals(transaction.getId(), transactionList.get(0).getId());
+        transactionService.updateTransaction(updatedTransaction.getId(), updatedTransaction);
     }
 
     @Test
-    void getMonthlyReport(){
+    @Order(5)
+    public void getMonthlyReport(){
         List<Transaction> report = transactionService.getMonthlyReport(3, 2023);
         report.stream().forEach(transaction -> {
             System.out.println(transaction);

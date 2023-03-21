@@ -4,11 +4,10 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Data
 @NoArgsConstructor
@@ -22,14 +21,16 @@ public class Transaction {
 
     @Version
     private int version;
-    private String bookId;
-    private int qty;
-    private LocalDateTime purchasedAt;
 
-    public  Transaction(String bookId, int qty){
-        this.bookId = bookId;
+    @DocumentReference(collection = "books")
+    private Book book;
+
+    private int qty;
+    private LocalDateTime purchasedAt = LocalDateTime.now(ZoneId.of("Etc/GMT+7"));
+
+    public  Transaction(Book book, int qty){
+        this.book = book;
         this.qty = qty;
-        this.purchasedAt = LocalDateTime.now(ZoneId.of("Etc/GMT+7"));
     }
 
 }
