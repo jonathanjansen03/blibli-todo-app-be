@@ -35,6 +35,7 @@ public class BookService {
         title = title.replace(" ", "+").toLowerCase();
 
         CustomResponse response = restTemplate.getForObject(url + title + limit, CustomResponse.class);
+        assert response != null;
         List<BookDTO> docsList = response.getDocs();
 
         List<Book> bookList = new ArrayList<>();
