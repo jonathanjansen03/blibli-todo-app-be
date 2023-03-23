@@ -99,6 +99,7 @@ public class BookService {
         oldBook.setAuthor(newBook.getAuthor());
         oldBook.setStock(newBook.getStock());
         oldBook.setPrice(newBook.getPrice());
+        oldBook.setDiscount(newBook.getDiscount());
     }
 
     public void deleteBook(String id){
