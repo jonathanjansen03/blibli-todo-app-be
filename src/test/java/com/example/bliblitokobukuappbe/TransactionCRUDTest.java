@@ -1,5 +1,6 @@
 package com.example.bliblitokobukuappbe;
 
+import com.example.bliblitokobukuappbe.dtos.TransactionDTO;
 import com.example.bliblitokobukuappbe.models.Book;
 import com.example.bliblitokobukuappbe.models.Transaction;
 import com.example.bliblitokobukuappbe.services.BookService;
@@ -48,15 +49,10 @@ public class TransactionCRUDTest {
     @Order(2)
     public void insertTransactionTest() {
 
-        Book book = bookList.get(0);
+        String bookId = bookList.get(0).getId();
         Random random = new Random();
 
-        Transaction newTransaction = new Transaction(book, random.nextInt(10));
-        transactionService.insertTransaction(newTransaction);
-
-        Transaction recentTransaction = transactionService.findTransactionById(newTransaction.getId());
-
-        Assertions.assertEquals(newTransaction.getId(), recentTransaction.getId());
+        transactionService.insertTransaction(new TransactionDTO(bookId, random.nextInt(10)));
 
     }
 

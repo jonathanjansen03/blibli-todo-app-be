@@ -1,5 +1,6 @@
 package com.example.bliblitokobukuappbe.controllers;
 
+import com.example.bliblitokobukuappbe.dtos.TransactionDTO;
 import com.example.bliblitokobukuappbe.models.Transaction;
 import com.example.bliblitokobukuappbe.services.TransactionService;
 import lombok.AllArgsConstructor;
@@ -28,17 +29,17 @@ public class TransactionController {
 
     @PostMapping(
             path = "/insert",
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    public void insertTransaction(@RequestBody Transaction transaction) {
-        transactionService.insertTransaction(transaction);
+    public void insertTransaction(@RequestBody TransactionDTO transactionDTO) {
+        transactionService.insertTransaction(transactionDTO);
     }
 
     @PutMapping(
             path = "/update/{transactionId}",
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public void updateTransaction(@RequestBody Transaction transaction, @PathVariable String transactionId) {
         transactionService.updateTransaction(transactionId, transaction);
@@ -46,8 +47,8 @@ public class TransactionController {
 
     @DeleteMapping(
             path = "/delete/{transactionId}",
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE}
     )
     public void deleteTransaction(@PathVariable String transactionId) {
         transactionService.deleteTransaction(transactionId);
