@@ -35,6 +35,7 @@ public class BookService {
         title = title.replace(" ", "+").toLowerCase();
 
         CustomResponse response = restTemplate.getForObject(url + title + limit, CustomResponse.class);
+        assert response != null;
         List<BookDTO> docsList = response.getDocs();
 
         List<Book> bookList = new ArrayList<>();
@@ -98,6 +99,7 @@ public class BookService {
         oldBook.setAuthor(newBook.getAuthor());
         oldBook.setStock(newBook.getStock());
         oldBook.setPrice(newBook.getPrice());
+        oldBook.setDiscount(newBook.getDiscount());
     }
 
     public void deleteBook(String id){
