@@ -43,11 +43,7 @@ public class BookController {
         bookService.insertBook(book);
     }
 
-    @PutMapping(
-            path = "/update/{bookId}",
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
-    )
+    @PutMapping(path = "/update/{bookId}")
     public void updateBook(@RequestBody Book book, @PathVariable("bookId") String id){
         bookService.updateBook(id, book);
     }

@@ -28,7 +28,7 @@ public class Transaction {
     private int qty;
     private LocalDateTime purchasedAt = LocalDateTime.now(ZoneId.of("Etc/GMT+7"));
 
-    public  Transaction(Book book, int qty){
+    public Transaction(Book book, int qty){
         this.book = book;
         this.qty = qty;
     }
