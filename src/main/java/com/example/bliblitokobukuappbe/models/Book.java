@@ -2,12 +2,8 @@ package com.example.bliblitokobukuappbe.models;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,7 +22,7 @@ public class Book {
     private String author;
     private int stock;
     private double price;
-    private double discount = 1;
+    private double discount = 0;
 
     public Book(String title, String author, int stock, double price) {
         this.title = title;
